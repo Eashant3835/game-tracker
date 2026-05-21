@@ -40,6 +40,7 @@ def get_matches(region,puuid):
         print("Request failed, Please try again!")
         return(None)
     
+    
 #Translating into a clean list with dicts
 def parse_match_stats(name, tag):
     puuid = get_puuid("Eclipse",5949)
@@ -70,8 +71,13 @@ def parse_match_stats(name, tag):
                     "X":ability_casts['x_cast'],
                     "match_outcome":match_result,
                     "damage_dealt":player["damage_made"],
-                    "damage_taken":player["damage_received"]                                                               
+                    "damage_taken":player["damage_received"],
+                    "economy_spent":player["economy"]["spent"]["average"],
+                    "economy_loadout":player["economy"]["loadout_value"]["average"]
+
+
                 }
                 parsed_matches.append(match_summary)
+                
     return(parsed_matches)
-    
+
