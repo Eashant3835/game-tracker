@@ -20,14 +20,16 @@ def search():
         tag = request.args.get("tag")
         region = request.args.get("region")
         puuid = get_puuid(name, tag)
-        player_id = save_player(name,tag,region,puuid)
-        matches = parse_match_stats(name, tag)
-        save_matches(player_id,matches)
-        coaching = get_coaching(name, tag)
-        return jsonify({"matches":matches,"coaching":coaching})
+        player_id = save_player(name, tag, region, puuid)
+        matches = parse_match_stats(name, tag, region)
+        save_matches(player_id, matches)
+        coaching = get_coaching(name, tag, region)
+        return jsonify({"matches": matches, "coaching": coaching})
     except Exception as e:
-        print(e)
-        return(jsonify({"error": str(e)}), 500)
+        import traceback
+        error_details = traceback.format_exc()
+        print(error_details)
+        return jsonify({"error": str(e), "traceback": error_details}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
