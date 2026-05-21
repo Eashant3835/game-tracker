@@ -23,7 +23,7 @@ GROQ_MODEL = os.getenv("GROQ_MODEL")
 client = Groq(api_key=GROQ_API_KEY)
 
 def get_coaching(name, tag, region):
-    parsed_match = parse_match_stats(name, tag)
+    parsed_match = parse_match_stats(name, tag, region)
     
     # Pre-calculations
     total_matches = len(parsed_match)
