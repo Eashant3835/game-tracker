@@ -43,8 +43,8 @@ def get_matches(region,puuid):
     
 #Translating into a clean list with dicts
 def parse_match_stats(name, tag, region):
-    puuid = get_puuid(name,tag)
-    result = get_matches(region,puuid)
+    puuid = get_puuid(name, tag)
+    result = get_matches(region, puuid)
     parsed_matches = []
     for match in result["data"]:
         for player in match["players"]["all_players"]:
@@ -80,4 +80,3 @@ def parse_match_stats(name, tag, region):
                 parsed_matches.append(match_summary)
                 
     return(parsed_matches)
-
