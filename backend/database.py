@@ -41,10 +41,15 @@ def init_db():
 def save_player(name,tag,region,puuid):
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO players (name, tag, region, puuid) VALUES (?,?,?,?)", (name,tag,region,puuid)
-        )
-        return(cursor.lastrowid)
+        cursor.execute("SELECT id FROM players WHERE name = ? AND tag = ?", (name, tag))
+        existing = cursor.fetchone()
+        if existing:
+            return existing[0]
+        else:
+            cursor.execute(
+                "INSERT INTO players (name, tag, region, puuid) VALUES (?,?,?,?)", (name,tag,region,puuid)
+            )
+            return(cursor.lastrowid)
 
 
 def save_matches(player_id, matches):

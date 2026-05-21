@@ -28,7 +28,7 @@ def get_puuid(name,tag):
 #Getting the match history of the player
 def get_matches(region,puuid):
     try:
-        url = f"https://api.henrikdev.xyz/valorant/v3/by-puuid/matches/{region}/{puuid}"
+        url = f"https://api.henrikdev.xyz/valorant/v3/by-puuid/matches/{region}/{puuid}?size=20"
         headers = {
             "Authorization": HENRIK_API_KEY
         }#Got url from documentation, header is to authenticate

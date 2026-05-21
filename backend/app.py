@@ -3,8 +3,10 @@ from database import init_db
 from valorant_api import get_puuid, parse_match_stats
 from ai import get_coaching
 from database import save_matches, save_player
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="*")
 init_db()
 
 @app.route("/search")

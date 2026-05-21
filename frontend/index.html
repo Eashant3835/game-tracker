@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.umd.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main_page" class="card">
+        <h1>The Valorant Coach</h1>
+        <p class="subtitle">Enter your valorant details to get AI-Powered Coaching!</p>
+        <div class="search-bar">
+        <input id="name" placeholder="Enter your username!">
+        <input id="tag" placeholder="Enter your tag!">
+        <select id="region">
+            <option value="na">North America</option>
+            <option value="eu">Europe</option>
+            <option value="ap">Asia Pacific</option>
+            <option value="latam">Latin America</option>
+            <option value="br">Brazil</option>
+            <option value="kr">Korea</option>
+
+        </select>
+        <button id="search_button">Submit</button>
+    </div>
+</div>
+<div id = "results"></div>
+    <script>
+        const search_button = document.getElementById("search_button");
+        search_button.addEventListener("click", function() {
+            const name = document.getElementById("name").value;
+            const tag = document.getElementById("tag").value;
+            const region = document.getElementById("region").value;
+
+            document.getElementById("results").innerHTML = "Analyzing your matches..."
+
+            fetch("http://127.0.0.1:5000/search?name=" + name + "&tag=" + tag + "&region=" + region)
+            .then(response => response.json())
+            .then(data => document.getElementById("results").innerHTML = marked.parse(data.coaching))
+
+        })
+    </script>
+</body>
+</html>
