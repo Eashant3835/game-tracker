@@ -51,11 +51,12 @@ def parse_match_stats(name, tag, region):
             if player["name"] == name and player["tag"] == tag: #Searching only for our player's stats
                 stats = player["stats"]
                 ability_casts = player["ability_casts"]
-                player_team = player["team"]
-                if match["teams"][player_team.lower()]["has_won"] == True:
-                    match_result = "Win"
+                player_team = player["team"].lower()
+                team_data = match["teams"].get(player_team)
+                if team_data:
+                    match_result = "Win" if team_data["has_won"] else "Loss"
                 else:
-                    match_result = "Loss"
+                    match_result = "Unknown"
                 match_summary = {
                     "map":match["metadata"]["map"],
                     "agent":player['character'],
@@ -78,5 +79,13 @@ def parse_match_stats(name, tag, region):
 
                 }
                 parsed_matches.append(match_summary)
-                
-    return(parsed_matches)
+    filtered_matches = []
+    for m in parsed_matches:
+        if m["match_outcome"] != "Unknown" and m["damage_dealt"] > 0:
+            filtered_matches.append(m)
+    return filtered_matches
+
+
+if __name__ == "__main__":
+    result = parse_match_stats("thelordofmango", "5245", "na")
+    print(result)
