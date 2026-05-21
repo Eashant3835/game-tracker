@@ -39,19 +39,19 @@ def get_coaching(name, tag, region):
 
     prompt = f"""You are a Valorant coach analyzing a player's last {total_matches} matches.
 
-PLAYER STATS SUMMARY:
-- Win rate: {wins}/{total_matches} ({wins/total_matches*100:.0f}%)
-- Avg KD: {avg_kd:.2f}
-- Avg kills: {avg_kills:.1f} | Avg deaths: {avg_deaths:.1f}
-- Avg damage per match: {avg_damage:.0f}
-- Headshot %: {hs_pct:.1f}%
-- Avg economy spent: {avg_eco:.0f}
+    PLAYER STATS SUMMARY:
+    - Win rate: {wins}/{total_matches} ({wins/total_matches*100:.0f}%)
+    - Avg KD: {avg_kd:.2f}
+    - Avg kills: {avg_kills:.1f} | Avg deaths: {avg_deaths:.1f}
+    - Avg damage per match: {avg_damage:.0f}
+    - Headshot %: {hs_pct:.1f}%
+    - Avg economy spent: {avg_eco:.0f}
 
-MATCH BY MATCH DATA:
-{parsed_match}
+    MATCH BY MATCH DATA:
+    {parsed_match}
 
     INSTRUCTIONS:
-    Address the user directly as "you" — never refer to them as "the player".
+    Address the user directly as "you" - never refer to them as "the player".
     Be a coach talking to your athlete, not an analyst writing a report.
     Maximum 5 bullet points, one sentence each. Be ruthlessly concise.
     Reference specific matches by map and agent (e.g. "your Jett game on Ascent") never as "Match 1" or "Match X".
