@@ -85,7 +85,6 @@ def parse_match_stats(name, tag, region):
             filtered_matches.append(m)
     return filtered_matches
 
-
 if __name__ == "__main__":
-    result = parse_match_stats("thelordofmango", "5245", "na")
-    print(result)
+    puuid = get_puuid("unluckymango", "202")
+    print(puuid)
