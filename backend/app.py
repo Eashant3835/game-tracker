@@ -5,7 +5,7 @@ from ai import get_coaching
 from database import save_matches, save_player
 from flask_cors import CORS
 
-app = Flask(__name__, template_folder="frontend")
+app = Flask(__name__, template_folder="../frontend")
 CORS(app, origins="*")
 init_db()
 
