@@ -39,7 +39,7 @@
 
             document.getElementById("results").innerHTML = "Analyzing your matches..."
 
-            fetch("http://127.0.0.1:5000/search?name=" + name + "&tag=" + tag + "&region=" + region)
+            fetch("/search?name=" + name + "&tag=" + tag + "&region=" + region)
             .then(response => response.json())
             .then(data => document.getElementById("results").innerHTML = marked.parse(data.coaching))
 
