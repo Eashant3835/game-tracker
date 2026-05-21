@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_from_directory
 from database import init_db
 from valorant_api import get_puuid, parse_match_stats
 from ai import get_coaching
@@ -12,6 +12,11 @@ init_db()
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/style.css")
+def serve_css():
+    # Tells Flask to look inside the "frontend" folder and send "style.css"
+    return send_from_directory("frontend", "style.css")
 
 
 @app.route("/search")
