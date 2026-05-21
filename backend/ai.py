@@ -52,12 +52,11 @@ def get_coaching(name, tag, region):
 
     INSTRUCTIONS:
     Address the user directly as "you" - never refer to them as "the player".
-    Be a coach talking to your athlete, not an analyst writing a report.
-    Maximum 5 bullet points, one sentence each. Be ruthlessly concise.
-    Reference specific matches by map and agent (e.g. "your Jett game on Ascent") never as "Match 1" or "Match X".
-    Every point must include a specific number from the data. No generic advice.
+    Give exactly 5 bullet points, one sentence each.
+    Each bullet must start with a concrete actionable suggestion, then justify it with specific numbers and a specific match (referenced by map and agent, e.g. "your Jett game on Ascent").
+    Never lead with an observation - always lead with what they should DO.
     If economy_spent is 0 or under 100, ignore that match for economy analysis as the data is likely missing.
-    Analyze: consistency, aim, economy, agent impact, and one thing you're doing well."""
+    Do not give advice that could apply to any player - every point must be grounded in the data above."""
 
     result = client.chat.completions.create(
         model=GROQ_MODEL,
