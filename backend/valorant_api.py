@@ -42,9 +42,9 @@ def get_matches(region,puuid):
     
     
 #Translating into a clean list with dicts
-def parse_match_stats(name, tag):
-    puuid = get_puuid("Eclipse",5949)
-    result = get_matches("na",puuid)
+def parse_match_stats(name, tag, region):
+    puuid = get_puuid(name,tag)
+    result = get_matches(region,puuid)
     parsed_matches = []
     for match in result["data"]:
         for player in match["players"]["all_players"]:
@@ -72,8 +72,8 @@ def parse_match_stats(name, tag):
                     "match_outcome":match_result,
                     "damage_dealt":player["damage_made"],
                     "damage_taken":player["damage_received"],
-                    "economy_spent":player["economy"]["spent"]["average"],
-                    "economy_loadout":player["economy"]["loadout_value"]["average"]
+                    "economy_spent":player["economy"]["spent"]["average"] or 0,
+                    "economy_loadout":player["economy"]["loadout_value"]["average"] or 0
 
 
                 }

@@ -22,7 +22,7 @@ GROQ_MODEL = os.getenv("GROQ_MODEL")
 
 client = Groq(api_key=GROQ_API_KEY)
 
-def get_coaching(name, tag):
+def get_coaching(name, tag, region):
     parsed_match = parse_match_stats(name, tag)
     
     # Pre-calculations
@@ -50,17 +50,14 @@ PLAYER STATS SUMMARY:
 MATCH BY MATCH DATA:
 {parsed_match}
 
-INSTRUCTIONS:
-You must reference specific matches and specific numbers in every piece of advice you give.
-Do NOT give advice that could apply to any player — every point must be justified by the data above.
-Analyze the following in order:
-1. Consistency — which stats fluctuate most across matches and why that matters
-2. Aim — headshot % and damage trends, call out specific low/high matches
-3. Economy — is the player spending efficiently, are low-eco matches hurting KD
-4. Agent usage — are ability casts being used enough relative to kills/impact
-5. One thing they're doing well that they should keep doing
-
-Format: bullet points, specific numbers, supportive but direct tone. No generic advice."""
+    INSTRUCTIONS:
+    Address the user directly as "you" — never refer to them as "the player".
+    Be a coach talking to your athlete, not an analyst writing a report.
+    Maximum 5 bullet points, one sentence each. Be ruthlessly concise.
+    Reference specific matches by map and agent (e.g. "your Jett game on Ascent") never as "Match 1" or "Match X".
+    Every point must include a specific number from the data. No generic advice.
+    If economy_spent is 0 or under 100, ignore that match for economy analysis as the data is likely missing.
+    Analyze: consistency, aim, economy, agent impact, and one thing you're doing well."""
 
     result = client.chat.completions.create(
         model=GROQ_MODEL,
