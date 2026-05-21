@@ -64,11 +64,11 @@ def parse_match_stats(name, tag):
                     "headshots":stats['headshots'],
                     "bodyshots":stats['bodyshots'],
                     "legshots":stats['legshots'],
-                    "Q:":ability_casts['q_cast'],
+                    "Q":ability_casts['q_cast'],
                     "C":ability_casts['c_cast'],
                     "E":ability_casts['e_cast'],
                     "X":ability_casts['x_cast'],
-                    "match_outcome":[match_result],
+                    "match_outcome":match_result,
                     "damage_dealt":player["damage_made"],
                     "damage_taken":player["damage_received"]                                                               
                 }
