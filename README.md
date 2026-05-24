@@ -79,6 +79,11 @@ Requires the account to be indexed in HenrikDev's database
 Match outcome may show as "Unknown" for non-standard game modes
 No rank context — stats are not adjusted for lobby difficulty
 
+Demo
+
+<img width="1901" height="895" alt="image" src="https://github.com/user-attachments/assets/02d401c1-3ec8-452c-9378-42abf3e43778" />
+
+
 
 License
 MIT
